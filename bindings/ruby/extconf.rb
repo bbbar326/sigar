@@ -36,7 +36,7 @@ when /bsd/
   have_library("kvm")
 when /mswin|mingw|cygwin|bccwin/
   os = 'win32'
-  require 'ftools'
+  require 'fileutils'
   $CPPFLAGS += ' -DWIN32'
   is_win32 = true
   have_library("kernel32")
@@ -123,7 +123,7 @@ end
   cf = File.basename(file)
   print file + ' -> ' + cf + "\n"
   if is_win32
-    File.copy(file, cf)
+    FileUtils.copy(file, cf)
   else
     File.symlink(file, cf) unless File.file?(cf)
   end
